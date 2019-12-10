@@ -7,13 +7,13 @@ namespace asp.net_Auth.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class UpdateUsers : IMigrationMetadata
+    public sealed partial class AddUserEmailToCar : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateUsers));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddUserEmailToCar));
         
         string IMigrationMetadata.Id
         {
-            get { return "201912051453356_UpdateUsers"; }
+            get { return "201912101509476_AddUserEmailToCar"; }
         }
         
         string IMigrationMetadata.Source

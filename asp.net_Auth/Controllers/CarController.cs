@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using asp.net_Auth.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace asp.net_Auth.Controllers
 {
@@ -38,6 +39,17 @@ namespace asp.net_Auth.Controllers
         // GET: Car/Create
         public ActionResult Create()
         {
+            List<string> emails = new List<string>();
+            List<string> ids = new List<string>();
+            var users = db.Set<ApplicationUser>().ToList();
+
+            foreach (var user in users)
+            {
+                emails.Add(user.Email);
+                ids.Add(user.Id);
+            }
+            ViewBag.Emails = emails;
+            ViewBag.Ids = ids;
             return View();
         }
 
@@ -46,8 +58,14 @@ namespace asp.net_Auth.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Wheel,DoorCount,UserId")] Car car)
+        public ActionResult Create([Bind(Include = "Id,Wheel,DoorCount,UserEmail, UserId")] Car car)
         {
+            if (car.UserEmail != null && car.UserId == null)
+            {
+                var user = db.Set<ApplicationUser>().ToList().Where(u => u.Email == car.UserEmail).FirstOrDefault();
+                car.UserId = user.Id;
+            }
+
             if (ModelState.IsValid)
             {
                 db.Cars.Add(car);

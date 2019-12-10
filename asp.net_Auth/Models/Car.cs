@@ -11,7 +11,8 @@ namespace asp.net_Auth.Models
         public string  Wheel { get; set; }
         public int DoorCount { get; set; }
 
-        public int UserId { get; set; }
+        public string UserEmail { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
     }
 }

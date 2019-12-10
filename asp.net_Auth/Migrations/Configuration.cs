@@ -10,7 +10,6 @@ namespace asp.net_Auth.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "asp.net_Auth.Models.ApplicationDbContext";
         }
 
         protected override void Seed(asp.net_Auth.Models.ApplicationDbContext context)
